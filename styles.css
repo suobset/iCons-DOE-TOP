@@ -8,13 +8,20 @@ body, html {
 
 #top-menu-bar {
     width: 100%;
-    background-color: #333;
-    color: white;
+    background-color: #FBFFF7;
+    background: #383D03;
     padding: 10px;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+    font-family: Poppins;
+font-size: 55px;
+font-weight: 800;
+line-height: 83px;
+letter-spacing: 0.45em;
+text-align: center;
+
 }
 
 #top-menu-bar a {
