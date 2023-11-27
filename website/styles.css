@@ -1,9 +1,152 @@
-*{
-    padding: 0;
+body,html{
     margin: 0;
-    box-sizing: border-box;
+    padding: 0;
 }
 
 body{
-    overflow: hidden;
+    background: rgb(194, 219, 194);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header{
+    background: #FBFFF7;
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 65px;
+}
+
+.menu-and-close-icon{
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#open-icon, #close-icon{
+    padding-right: 30px; 
+}
+
+#close-icon{
+    display: none;
+    cursor: pointer;
+}
+
+.menu-items{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 45px;
+    right: 0;
+    padding: 5%;
+    background: rgba(251, 255, 247, 0.66);
+}
+
+.menu-items.open{
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.nav-link{
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    font-family: 'Alata', sans-serif;
+    text-decoration: none;
+    line-height: 50px;
+    color: #383D03;
+    align-items: center;
+}
+
+.nav-link:hover{
+    background: rgba(56,61,3,0.45);
+}
+
+.website-name{
+    display: flex;
+    flex-direction: column;
+    line-height: 10px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+.title{
+    font-family: 'Alata', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    color: #383D03;
+    text-decoration: none;
+    font-size: 35px;
+    letter-spacing: 17px;
+}
+
+.title-extended{
+  font-size: 17px;;
+}
+
+/* Styles for the container wrapping the search bar */
+.search-container {
+    width: 35%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    margin-top: 65px; 
+    padding-top: 10px; 
+}
+
+/* Styles for the search bar container */
+.search-bar {
+    width: 100%; 
+    display: flex; 
+}
+
+/* Styles for the search input */
+.search-input {
+    width: 100%; 
+    border: 3px solid #FFFFFF; 
+    border-right: none; 
+    padding: 5px; 
+    height: 20px; 
+    border-radius: 5px 0 0 5px; 
+    outline: none; 
+    color: #9DBFAF; 
+}
+
+/* Styles for the focused state of the search input */
+.search-input:focus {
+    color: black; 
+}
+
+/* Styles for the search button */
+.searchButton {
+    width: 40px; 
+    height: 36px; 
+    border: 1px solid rgba(153, 153, 153, 0.66); 
+    background: rgba(153, 153, 153, 0.66);
+    text-align: center; 
+    color: #fff; 
+    border-radius: 0 5px 5px 0; 
+    cursor: pointer; 
+    font-size: 20px; 
+}
+
+/* styles for legend data button */
+.legend-button {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    padding: 2px 50px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #FBFFF7;
+    color: #383D03;
+    font-family:'Alata', sans-serif;
+    font-size: 20px;;
+    border: none;
+    border-radius: 10px;
+    align-items: center;
 }
