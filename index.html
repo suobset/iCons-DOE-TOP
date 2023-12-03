@@ -6,23 +6,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
-    <title>Your Map</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/ol3/4.6.5/ol.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/ol3/4.6.5/ol.js"></script>
+      <!-- cdnjs link to import all of font awesome's icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+      <!-- link to google font for nav links -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Alata&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+
+      <!-- link to google font for title  -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@900&display=swap" rel="stylesheet">
+
+    <title>Assert Map</title>
 </head>
 <body>
-    <!-- Top menu bar -->
-    <div id="top-menu-bar">
-        <!-- Add your menu items or content here -->
-        <a href="./pages/about.html">About</a> | <a href="./pages/documentation.html">Documentation</a> | <a href="./pages/datasets.html">Datasets</a>
-    </div>
+    <header class="header">
+        <div class="website-name">
+            <a href="index.html" class="title">ASSERT</a>
+        <h3 class="title-extended">AI Supported Smart Electricity Restoration Tool</h3>
+        </div>
+        <!-- Container for menu and close icons(initially hidden) -->
+        <div class="menu-and-close-icon">
+            <i class="fa-solid fa-bars fa-2lg" id="open-icon" style="color: #383d03;"></i>
+            <i class="fa-solid fa-x fa-2lg" id="close-icon" style="color: #383d03;"></i>
+        </div>
+        <!-- Navigation menu -->
+        <nav class="menu-items">
+            <a href="./pages/about.html" class="nav-link">About</a>
+            <a href="./pages/datasets.html" class="nav-link">Datasets</a>
+            <a href="./pages/documentation.html" class="nav-link">Documentation</a>
+        </nav>
+    </header>
 
     <!-- Leaflet map iframe -->
     <div id="leaflet-map" alt="leaflet-map">
         <iframe src="./pages/map.html"></iframe>
     </div>
-
+    
+    <script src="main.js"></script>
+ 
     <!-- Footer -->
     <div id="footer">
-        <p>ASSERT Alpha v0.0.2 | UMass iCons</p>
+        <p>ASSERT Alpha v0.0.3 | UMass iCons</p>
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
