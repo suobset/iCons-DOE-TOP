@@ -41,6 +41,57 @@ df_housing = pd.DataFrame({
 map_center = [37.0902, -95.7129]
 m = folium.Map(location=map_center, zoom_start=4, control_scale=True)
 
+#popup html
+popup_html = '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            /* Tooltip container */
+            .tooltip {
+                position: relative;
+                display: inline-block;
+                border-bottom: 1px dotted black; 
+            }
+
+            /* Tooltip text */
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                background-color: black;
+                color: #fff;
+                text-align: center;
+                padding: 5px 0;
+                border-radius: 6px;
+                
+                /* Position the tooltip text*/
+                position: absolute;
+                z-index: 1;
+            }
+
+            /* Show the tooltip text when you mouse over the tooltip container */
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Overburdenned Index = some_number</h1>
+        <div class="tooltip">
+            <button class="button" style="display: flex;" onmouseover="showPopup()" onmouseout="hidePopup()">
+                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                <span class="tooltiptext">Tooltip text</span>
+            </button>
+        </div>
+       
+    </body>
+    </html>
+'''
+
+
 # Add unemployment choropleth layer
 folium.Choropleth(
     geo_data=counties,
@@ -51,7 +102,9 @@ folium.Choropleth(
     fill_color='RdBu',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Unemployment Rate (%)'
+    legend_name='Unemployment Rate (%)',
+    highlight=True,
+    popup= folium.Popup(popup_html),
 ).add_to(m)
 
 # Add education choropleth layer
@@ -64,7 +117,9 @@ folium.Choropleth(
     fill_color='YlGnBu',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Education Attainment'
+    legend_name='Education Attainment',
+    highlight=True,  
+    popup= folium.Popup(popup_html),
 ).add_to(m)
 
 # Add health choropleth layer
@@ -77,7 +132,9 @@ folium.Choropleth(
     fill_color='BuPu',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Health Index'
+    legend_name='Health Index',
+    highlight=True,  
+    popup= folium.Popup(popup_html),
 ).add_to(m)
 
 # Add social vulnerability index choropleth layer
@@ -90,7 +147,9 @@ folium.Choropleth(
     fill_color='YlOrRd',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Social Vulnerability Index'
+    legend_name='Social Vulnerability Index',
+    highlight=True,  
+    popup= folium.Popup(popup_html),
 ).add_to(m)
 
 # Add housing choropleth layer
@@ -103,7 +162,9 @@ folium.Choropleth(
     fill_color='PuBuGn',
     fill_opacity=0.7,
     line_opacity=0.2,
-    legend_name='Housing Index'
+    legend_name='Housing Index',
+    highlight=True,  
+    popup= folium.Popup(popup_html),
 ).add_to(m)
 
 # Add layer control to toggle visibility
