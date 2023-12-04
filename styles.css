@@ -120,12 +120,14 @@ iframe {
 
 #footer {
     width: 20%;
-    background-color: #FBFFF7;
+    background-color: rgba(251, 255, 247, 0.8); /* Adjust the transparency as needed */
     color: black;
     text-align: center;
     position: fixed;
-    bottom: 0;
-    right: 0; /* Adjusted to be at the bottom right */
+    bottom: 10px; 
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    border-radius: 10px; 
 }
 
 /*about page styles */
