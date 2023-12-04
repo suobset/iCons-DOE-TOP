@@ -235,3 +235,10 @@ iframe {
      margin-top: 2px;
  }
  
+ .Seniors-imgs{
+    display: flex;
+}
+
+.Juniors-imgs{
+    display: flex;
+}
