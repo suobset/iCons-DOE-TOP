@@ -5,9 +5,13 @@ from urllib.request import urlopen
 import json
 import random
 
-# Load GeoJSON data
+# Load GeoJSON data for counties
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
+
+# Load GeoJSON data for state borders
+with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
+    states = json.load(response)
 
 # Load unemployment data
 df_unemployment = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/fips-unemp-16.csv",
@@ -40,6 +44,12 @@ df_housing = pd.DataFrame({
 # Create a Folium map centered at a location of your choice (e.g., USA center)
 map_center = [37.0902, -95.7129]
 m = folium.Map(location=map_center, zoom_start=4, control_scale=True)
+
+# Add state borders with a higher line weight
+folium.GeoJson(
+    states,
+    style_function=lambda feature: {'color': 'black', 'weight': 2}
+).add_to(m)
 
 #popup html
 popup_html = '''
@@ -79,7 +89,7 @@ popup_html = '''
         </style>
     </head>
     <body>
-        <h1>Overburdenned Index = some_number</h1>
+        <h1>Overburdened Index = some_number</h1>
         <div class="tooltip">
             <button class="button" style="display: flex;" onmouseover="showPopup()" onmouseout="hidePopup()">
                 <i class="fa fa-question-circle" aria-hidden="true"></i>
@@ -91,7 +101,6 @@ popup_html = '''
     </html>
 '''
 
-
 # Add unemployment choropleth layer
 folium.Choropleth(
     geo_data=counties,
@@ -100,11 +109,11 @@ folium.Choropleth(
     columns=['fips', 'unemp'],
     key_on='feature.id',
     fill_color='RdBu',
-    fill_opacity=0.7,
-    line_opacity=0.2,
+    fill_opacity=0.4,  # Adjusted opacity
+    line_opacity=0.5,  # Adjusted opacity
     legend_name='Unemployment Rate (%)',
     highlight=True,
-    popup= folium.Popup(popup_html),
+    popup=folium.Popup(popup_html),
 ).add_to(m)
 
 # Add education choropleth layer
@@ -115,11 +124,11 @@ folium.Choropleth(
     columns=['fips', 'education'],
     key_on='feature.id',
     fill_color='YlGnBu',
-    fill_opacity=0.7,
-    line_opacity=0.2,
+    fill_opacity=0.4,  # Adjusted opacity
+    line_opacity=0.5,  # Adjusted opacity
     legend_name='Education Attainment',
-    highlight=True,  
-    popup= folium.Popup(popup_html),
+    highlight=True,
+    popup=folium.Popup(popup_html),
 ).add_to(m)
 
 # Add health choropleth layer
@@ -130,11 +139,11 @@ folium.Choropleth(
     columns=['fips', 'health'],
     key_on='feature.id',
     fill_color='BuPu',
-    fill_opacity=0.7,
-    line_opacity=0.2,
+    fill_opacity=0.4,  # Adjusted opacity
+    line_opacity=0.5,  # Adjusted opacity
     legend_name='Health Index',
-    highlight=True,  
-    popup= folium.Popup(popup_html),
+    highlight=True,
+    popup=folium.Popup(popup_html),
 ).add_to(m)
 
 # Add social vulnerability index choropleth layer
@@ -145,11 +154,11 @@ folium.Choropleth(
     columns=['fips', 'social_vulnerability'],
     key_on='feature.id',
     fill_color='YlOrRd',
-    fill_opacity=0.7,
-    line_opacity=0.2,
+    fill_opacity=0.4,  # Adjusted opacity
+    line_opacity=0.5,  # Adjusted opacity
     legend_name='Social Vulnerability Index',
-    highlight=True,  
-    popup= folium.Popup(popup_html),
+    highlight=True,
+    popup=folium.Popup(popup_html),
 ).add_to(m)
 
 # Add housing choropleth layer
@@ -160,11 +169,11 @@ folium.Choropleth(
     columns=['fips', 'housing'],
     key_on='feature.id',
     fill_color='PuBuGn',
-    fill_opacity=0.7,
-    line_opacity=0.2,
+    fill_opacity=0.4,  # Adjusted opacity
+    line_opacity=0.5,  # Adjusted opacity
     legend_name='Housing Index',
-    highlight=True,  
-    popup= folium.Popup(popup_html),
+    highlight=True,
+    popup=folium.Popup(popup_html),
 ).add_to(m)
 
 # Add layer control to toggle visibility
@@ -174,4 +183,4 @@ folium.LayerControl().add_to(m)
 folium.plugins.MiniMap(toggle_display=True, position='bottomleft').add_to(m)
 
 # Save the map as an HTML file
-m.save('./map.html')
+m.save('./map_translucent.html')

@@ -7,7 +7,7 @@ body, html {
 }
 
 .header {
-    background: #FBFFF7;
+    background: rgba(251, 255, 247, 0.8); /* Adjust the transparency as needed */
     position: fixed;
     width: 100%;
     display: flex;
@@ -87,13 +87,14 @@ body, html {
 
 #top-menu-bar {
     width: 100%;
-    background-color: #333;
+    background-color: rgba(51, 51, 51, 0.8); /* Adjust the transparency as needed */
     color: white;
     padding: 35px;
     position: fixed;
     top: 0;
     left: 0;
 }
+
 
 #top-menu-bar a {
     color: white;
