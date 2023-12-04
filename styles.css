@@ -77,7 +77,7 @@ body, html {
     color: #383D03;
     text-decoration: none;
     font-size: 35px;
-    letter-spacing: 17px;
+    letter-spacing: 18px;
 }
 
 .title-extended{
@@ -129,3 +129,109 @@ iframe {
     left: 0;
     z-index: 1000;
 }
+
+/*about page styles */
+.title-section{
+    padding: 15rem;
+    background:#383d0369;
+ }
+ .icons-section{
+   width: 100%;
+   height: 100vh;
+   display: flex;
+ }
+ 
+ .icons-description{
+     flex: 50%;
+     padding-top: 10px;
+ }
+ 
+ .group-img{
+     flex: 50%;
+     height: 100vh;
+ }
+ 
+ #group-img{
+     width: 100%;
+     height: 75%;
+ }
+ 
+ .about-title{
+     margin-top: 65px;
+     color:#FBFFF7;
+     font-family: 'Lato', sans-serif;
+     text-align: center;
+     font-size: 50px;
+     padding-top: 30px;
+ }
+ 
+ .icons{
+     font-family: 'Alata', sans-serif;
+     text-align: center;
+     font-size: 30px;
+     padding-top: 15px;
+     color:#f5fbef;
+ }
+ 
+ .revealable {
+     position: relative;
+     transform: translateY(150px);
+     opacity: 0;
+     transition: all 2s ease;
+ }
+ 
+ .revealable.active{
+     transform: translateY(0px);
+     opacity: 1;
+ }
+ 
+ 
+ .icons-paragraph{
+     font-family: 'Lato', sans-serif;
+     margin: 26px;
+     font-size: 26px;
+     color:#232702;
+     font-weight: bolder;
+     line-height: 50px;
+ }
+ 
+ ul.icons-paragraph{
+     list-style-type: circle;
+ }
+ 
+ .meet-team-section{
+     display:flex;
+     flex-direction: column;
+ }
+ 
+ .meet-teem-header{
+     text-align: center;
+     font-family: 'Alata', sans-serif;
+     font-size: 40px;
+     color: #f5fbef;
+ }
+ .intro{
+     display:flex;
+     flex-direction: column;
+ 
+ }
+ 
+ /*styles to make circular image*/
+ .intro-img{
+     height: 20rem;
+     width: 15rem;
+     border: 1px solid #f5fbef;
+     box-shadow: 5px 2px 2px #383d0324;
+     margin: 26px;
+     margin-bottom: 5px; 
+ }
+ 
+ .intro-paragraph{
+     font-family: 'Lato', sans-serif;
+     font-size: 26px;
+     color:#232702;
+     font-weight: bolder;
+     margin: 35px;
+     margin-top: 2px;
+ }
+ 
