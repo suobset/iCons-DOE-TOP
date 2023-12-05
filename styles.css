@@ -132,6 +132,10 @@ iframe {
 }
 
 /*about page styles */
+.about-body{
+    background-color: #383d0358;
+}
+
 .title-section{
     padding: 15rem;
     background:#383d0369;
@@ -154,7 +158,7 @@ iframe {
  
  #group-img{
      width: 100%;
-     height: 75%;
+     height: 85%;
  }
  
  .about-title{
@@ -169,23 +173,10 @@ iframe {
  .icons{
      font-family: 'Alata', sans-serif;
      text-align: center;
-     font-size: 30px;
+     font-size: 45px;
      padding-top: 15px;
      color:#f5fbef;
  }
- 
- .revealable {
-     position: relative;
-     transform: translateY(150px);
-     opacity: 0;
-     transition: all 2s ease;
- }
- 
- .revealable.active{
-     transform: translateY(0px);
-     opacity: 1;
- }
- 
  
  .icons-paragraph{
      font-family: 'Lato', sans-serif;
@@ -208,7 +199,7 @@ iframe {
  .meet-teem-header{
      text-align: center;
      font-family: 'Alata', sans-serif;
-     font-size: 40px;
+     font-size: 45px;
      color: #f5fbef;
  }
  .intro{
@@ -217,29 +208,69 @@ iframe {
  
  }
  
- /*styles to make circular image*/
  .intro-img{
      height: 20rem;
      width: 15rem;
-     border: 1px solid #f5fbef;
-     box-shadow: 5px 2px 2px #383d0324;
+     box-shadow: 2px 2px 2px #383d0324;
      margin: 26px;
      margin-bottom: 5px; 
  }
  
- .intro-paragraph{
+ .name{
      font-family: 'Lato', sans-serif;
-     font-size: 26px;
+     font-size: 25px;
+     color:#232702;
+     font-weight: bolder;
+     margin: 35px;
+     margin-top: 2px;
+     margin-bottom: 2px;
+ }
+/* 
+ seperate name class for Anvitha so their name stays within picture width */
+ .name-Anvitha{
+    font-family: 'Lato', sans-serif;
+     font-size: 23px;
+     color:#232702;
+     font-weight: bolder;
+     margin: 35px;
+     margin-top: 2px;
+     margin-bottom: 2px;
+ }
+
+ .intro-paragraph{
+    font-family: 'Lato', sans-serif;
+     font-size: 18px;
      color:#232702;
      font-weight: bolder;
      margin: 35px;
      margin-top: 2px;
  }
- 
+ .scott-img-div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+ }
+
+ .scott-img{
+    height: 20rem;
+     width: 15rem;
+     box-shadow: 2px 2px 2px #383d0324;
+     margin: 26px;
+     margin-bottom: 5px; 
+     display: flex;
+    justify-content: center;
+ }
  .Seniors-imgs{
     display: flex;
+    justify-content: space-evenly;
 }
 
 .Juniors-imgs{
     display: flex;
+    justify-content: space-evenly;
+}
+
+.empty-div{
+    padding: 70px;
+    color: #383d0358;
 }
