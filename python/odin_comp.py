@@ -39,22 +39,6 @@ folium.Choropleth(
     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
 ).add_to(m)
 
-# Add predicted ODIN choropleth layer to the map
-folium.Choropleth(
-    geo_data=counties,
-    name='Predicted ODIN (Higher = More Overburden)',
-    data=predicted_odin,
-    columns=['FIPS', 'F-VALUES'],  # Update column names
-    key_on='feature.id',  # Adjust this according to your GeoJSON structure
-    fill_color='PuBuGn',
-    fill_opacity=0.7,
-    line_opacity=0.2,
-    nan_fill_color='gray',  # Set color for null values
-    nan_fill_opacity=0.5,  # Set opacity for null values
-    legend_name='Predicted ODIN',
-    tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
-).add_to(m)
-
 # Create a new DataFrame without values over 1.2
 filtered_dataframe = predicted_complete[predicted_complete['F-VALUES'] <= 0.1]
 
@@ -64,7 +48,7 @@ filtered_dataframe['fill_color'] = filtered_dataframe['F-VALUES']
 # Add predicted ODIN choropleth layer to the map
 folium.Choropleth(
     geo_data=counties,
-    name='Power Burden',
+    name='Predicted ODIN Power Burden',
     data=filtered_dataframe,
     columns=['FIPS', 'F-VALUES'],  # Update column names
     key_on='feature.id',  # Adjust this according to your GeoJSON structure
@@ -78,15 +62,31 @@ folium.Choropleth(
     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
 ).add_to(m)
 
+# Add predicted ODIN choropleth layer to the map
+folium.Choropleth(
+    geo_data=counties,
+    name='Predicted ODIN (Archive)',
+    data=predicted_odin,
+    columns=['FIPS', 'F-VALUES'],  # Update column names
+    key_on='feature.id',  # Adjust this according to your GeoJSON structure
+    fill_color='PuBuGn',
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    nan_fill_color='gray',  # Set color for null values
+    nan_fill_opacity=0.5,  # Set opacity for null values
+    legend_name='Predicted ODIN',
+    tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
+).add_to(m)
 
 # Add state borders with a higher line weight
 folium.GeoJson(
     states,
+    name='Darken Borders',
     style_function=lambda feature: {'color': 'black', 'weight': 2}
 ).add_to(m)
 
 # Add layer control for selecting layers
-folium.LayerControl().add_to(m)
+folium.LayerControl(autoZIndex=True).add_to(m)
 
 # Move the zoom control to the center left
 folium.plugins.MiniMap(toggle_display=True, position='bottomleft').add_to(m)
