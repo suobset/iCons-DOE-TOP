@@ -26,7 +26,7 @@ m = folium.Map(location=map_center, zoom_start=4)
 # Add actual ODIN choropleth layer to the map
 folium.Choropleth(
     geo_data=counties,
-    name='Actual ODIN',
+    name='Actual ODIN (Higher = More Overburden)',
     data=actual_odin,
     columns=['FIPS', 'F-VALUES'],  # Update column names
     key_on='feature.id',  # Adjust this according to your GeoJSON structure
@@ -42,7 +42,7 @@ folium.Choropleth(
 # Add predicted ODIN choropleth layer to the map
 folium.Choropleth(
     geo_data=counties,
-    name='Predicted ODIN',
+    name='Predicted ODIN (Higher = More Overburden)',
     data=predicted_odin,
     columns=['FIPS', 'F-VALUES'],  # Update column names
     key_on='feature.id',  # Adjust this according to your GeoJSON structure
@@ -56,7 +56,7 @@ folium.Choropleth(
 ).add_to(m)
 
 # Create a new DataFrame without values over 1.2
-filtered_dataframe = predicted_complete[predicted_complete['F-VALUES'] <= 0.8]
+filtered_dataframe = predicted_complete[predicted_complete['F-VALUES'] <= 0.1]
 
 # Create a new column for fill_color based on the condition
 filtered_dataframe['fill_color'] = filtered_dataframe['F-VALUES']
@@ -73,7 +73,7 @@ folium.Choropleth(
     line_opacity=0.2,
     nan_fill_color='gray',  # Set color for null values
     nan_fill_opacity=0.5,  # Set opacity for null values
-    bins=[0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+    #bins=[0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
     legend_name='Power Burden',
     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
 ).add_to(m)
