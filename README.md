@@ -117,4 +117,5 @@ ASSERT is a crucial program addressing the impact of power outages, and making i
 You may have paid money to get copies of a free program, or you may have obtained copies at no charge. But regardless of how you got your copies, you always have the freedom to copy and change the software, even to sell copies.
 
 With love, 
+
 The UMass iCons Team for The 2023 Opportunity Project.
