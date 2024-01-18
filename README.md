@@ -10,8 +10,8 @@ By noticing trends in various Census Data, Social Vulnerability Data, and Power 
 
 Power outages are inevitable, and the key to effective response lies in predicting outage impact and allocating resources accordingly. ASSERT leverages federal open data and advanced regression models to address this challenge. We used the following datasets: 
 
-- CDC/ATSDR Social Vulerability Indices
-- Outage Data Initiative power outage dataset
+- CDC/ATSDR Social Vulerability Indices: https://www.atsdr.cdc.gov/placeandhealth/svi/index.html
+- Outage Data Initiative power outage dataset: https://odin.ornl.gov/
 
 This project was completed under "The Opportunity Project" Sprint, organized by U.S. Census Bureau, and our project was done in partnership with The Department of Energy. More details on the sprint can be found here: https://opportunity.census.gov/
 
@@ -23,17 +23,12 @@ Directors of Utility Emergency Response Teams (UERTs) are the primary users of A
 
 We extend our sincere gratitude to the following User Experience Advocates who generously shared their invaluable insights and expertise, contributing significantly to the success of ASSERT:
 
-- Carol Freeman — National Preparedness Analytics Center, Argonne National Laboratory
-- Scott Sternfeld — The Outage Data Initiative
-- Hessann Farooqi — Boston Climate Action Network
-- Kristen Finne — Department of Health and Human Services
-- Jason Eisdorfer — Pacific Northwest National Lab
-- Todd Levin — Argonne National Laboratory
-
-In addition, we express our deepest appreciation to notable figures who have graciously contributed to discussions about ASSERT, providing essential perspectives based on the challenges faced by their respective Utility Emergency Response Teams (UERTs):
-
-- John Burnap — Eversource
-- Michael Gibeley — National Grid
+- [Carol Freeman](https://www.linkedin.com/in/carol-freeman/) — National Preparedness Analytics Center, Argonne National Laboratory
+- [Scott Sternfeld](https://www.linkedin.com/in/scottsternfeld/) — The Outage Data Initiative
+- [Hessann Farooqi](https://bostoncan.org/hessann-farooqi/) — Boston Climate Action Network
+- [Kristen Finne](https://www.linkedin.com/in/kristen-finne-a643979/) — Department of Health and Human Services
+- [Jason Eisdorfer](https://www.linkedin.com/in/jason-eisdorfer-9613555/) — Pacific Northwest National Lab
+- [Todd Levin](https://www.anl.gov/profile/todd-levin) — Argonne National Laboratory
 
 Their unwavering commitment and insights have played a crucial role in refining the product and ensuring its relevance to real-world scenarios.
 
