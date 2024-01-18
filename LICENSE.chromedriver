@@ -1,3 +1,7 @@
+The folllowing license is for the Google Chrome Driver which was used to web-scrape data. It is not associated wih ASSERT; rather we have included a copy of the version of Chrome Driver to facilitate developer workflows. Hence, we have included relevant licenses for usage of the Chrome Driver as well.
+
+More information on the Chrome Driver: https://googlechromelabs.github.io/chrome-for-testing/#stable
+
 // Copyright 2015 The Chromium Authors
 //
 // Redistribution and use in source and binary forms, with or without
