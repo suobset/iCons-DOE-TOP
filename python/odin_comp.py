@@ -10,6 +10,7 @@ from folium.plugins import MiniMap
 actual_odin = pd.read_csv("../data/actual_odin.csv")
 predicted_odin = pd.read_csv("../data/predicted_odin.csv")
 predicted_complete = pd.read_csv("../data/predicted_complete.csv")
+all_odin = pd.read_csv("../data/main/all_ODIN_3.csv")
 
 # Load GeoJSON data for counties
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
@@ -30,7 +31,7 @@ folium.Choropleth(
     data=actual_odin,
     columns=['FIPS', 'F-VALUES'],  # Update column names
     key_on='feature.id',  # Adjust this according to your GeoJSON structure
-    fill_color='PuBuGn',
+    fill_color='RdBu',
     fill_opacity=0.7,
     line_opacity=0.2,
     nan_fill_color='gray',  # Set color for null values
@@ -62,28 +63,21 @@ folium.Choropleth(
     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
 ).add_to(m)
 
-# Add predicted ODIN choropleth layer to the map
-folium.Choropleth(
-    geo_data=counties,
-    name='Predicted ODIN (Archive)',
-    data=predicted_odin,
-    columns=['FIPS', 'F-VALUES'],  # Update column names
-    key_on='feature.id',  # Adjust this according to your GeoJSON structure
-    fill_color='PuBuGn',
-    fill_opacity=0.7,
-    line_opacity=0.2,
-    nan_fill_color='gray',  # Set color for null values
-    nan_fill_opacity=0.5,  # Set opacity for null values
-    legend_name='Predicted ODIN',
-    tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
-).add_to(m)
-
-# Add state borders with a higher line weight
-folium.GeoJson(
-    states,
-    name='Darken Borders',
-    style_function=lambda feature: {'color': 'black', 'weight': 2}
-).add_to(m)
+# # Add predicted ODIN choropleth layer to the map
+# folium.Choropleth(
+#     geo_data=counties,
+#     name='Predicted ODIN (Archive)',
+#     data=predicted_odin,
+#     columns=['FIPS', 'F-VALUES'],  # Update column names
+#     key_on='feature.id',  # Adjust this according to your GeoJSON structure
+#     fill_color='PuBuGn',
+#     fill_opacity=0.7,
+#     line_opacity=0.2,
+#     nan_fill_color='gray',  # Set color for null values
+#     nan_fill_opacity=0.5,  # Set opacity for null values
+#     legend_name='Predicted ODIN',
+#     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
+# ).add_to(m)
 
 # Add layer control for selecting layers
 folium.LayerControl(autoZIndex=True).add_to(m)
@@ -92,4 +86,4 @@ folium.LayerControl(autoZIndex=True).add_to(m)
 folium.plugins.MiniMap(toggle_display=True, position='bottomleft').add_to(m)
 
 # Display the map
-m.save('./actual_odin_map.html')
+m.save('./odin_same_color.html')
