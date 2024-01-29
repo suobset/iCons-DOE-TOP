@@ -24,11 +24,17 @@ with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-c
 map_center = [39.8283, -98.5795]
 m = folium.Map(location=map_center, zoom_start=4)
 
+# Create a new DataFrame without values over 1.2
+act_filtered_dataframe = actual_odin[actual_odin['F-VALUES'] <= 0.1]
+
+# Create a new column for fill_color based on the condition
+act_filtered_dataframe['fill_color'] = act_filtered_dataframe['F-VALUES']
+
 # Add actual ODIN choropleth layer to the map
 folium.Choropleth(
     geo_data=counties,
     name='Actual ODIN (Higher = More Overburden)',
-    data=actual_odin,
+    data=act_filtered_dataframe,
     columns=['FIPS', 'F-VALUES'],  # Update column names
     key_on='feature.id',  # Adjust this according to your GeoJSON structure
     fill_color='RdBu',
