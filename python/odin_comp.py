@@ -40,7 +40,7 @@ folium.Choropleth(
     fill_color='RdBu',
     fill_opacity=0.7,
     line_opacity=0.2,
-    nan_fill_color='gray',  # Set color for null values
+    nan_fill_color='pink',  # Set color for null values
     nan_fill_opacity=0.5,  # Set opacity for null values
     legend_name='Actual ODIN',
     tooltip=folium.GeoJsonTooltip(fields=['name'], labels=False)
@@ -62,7 +62,7 @@ folium.Choropleth(
     fill_color='RdBu',
     fill_opacity=0.7,
     line_opacity=0.2,
-    nan_fill_color='gray',  # Set color for null values
+    nan_fill_color='pink',  # Set color for null values
     nan_fill_opacity=0.5,  # Set opacity for null values
     #bins=[0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
     legend_name='Power Burden',
