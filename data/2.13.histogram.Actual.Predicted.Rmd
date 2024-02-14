@@ -1,0 +1,175 @@
+---
+title: "12.6.23lm_comp"
+author: "Gabrielle Walczak"
+date: "2023-12-06"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(plotrix) 
+library(ggplot2)
+```
+
+```{r}
+SVI <- read.csv('/Volumes/Lexar/svi_interactive_map.csv')
+p_value <- read.csv('/Volumes/Lexar/p-value_filtered_SVI.csv')
+#weight_and_unweight <- inner_join(p_value, SVI, by = join_by(FIPS))
+F_VAL <- read.csv('/Volumes/Lexar/Just_F_Values.csv')
+F_VAL <- F_VAL[c("FIPS", "F_VALUE")]
+```
+
+```{r}
+SVI <- SVI[c("FIPS", "STATE", "EP_POV150", "EP_MINRTY", "E_UNEMP")]
+```
+
+```{r}
+all_ODIN_3 <- inner_join(F_VAL, SVI, by = join_by(FIPS))
+```
+
+
+
+```{r}
+F.value <- all_ODIN_3$F_VALUE
+EP_POV150 <- all_ODIN_3$EP_POV150
+EP_MINRTY <- all_ODIN_3$EP_MINRTY
+E_UNEMP <- all_ODIN_3$E_UNEMP
+range(F.value)
+```
+
+# Building linear regression models using SVI indices
+```{r}
+linmod1 <- lm(F.value ~ EP_POV150)
+
+b0 <- linmod1$coef[1]
+b1 <- linmod1$coef[2]
+
+gap.plot(EP_POV150, F.value,gap = c(3.5, 8)) 
+# plot(EP_POV150, F.value)
+
+abline(a = b0, b = b1, col = "red")
+
+summary(linmod1)
+cor(EP_POV150, F.value)
+```
+
+
+```{r}
+E_UNEMP_lm <- lm(F.value ~ E_UNEMP)
+
+b0 <- linmod2$coef[1]
+b1 <- linmod2$coef[2]
+
+plot(E_UNEMP, F.value, xlim = c(0,50000),ylim = c(0,0.5))
+#gap.plot(log(E_UNEMP), F.value,gap = c(3.5, 8)) 
+
+abline(a = b0, b = b1, col = "red")
+
+summary(E_UNEMP_lm)
+cor(E_UNEMP, F.value)
+```
+
+
+# Actual F-value histogram
+```{r}
+ggplot(all_ODIN_3, aes(F_VALUE)) +
+  geom_histogram(bins = 100)
+```
+
+
+
+
+```{r}
+ggplot(all_ODIN_3, aes(x = E_UNEMP, y = F_VALUE)) +
+  geom_bar(stat = "identity")
+```
+
+```{r}
+linmod3 <- lm(F.value ~ EP_MINRTY)
+
+b0 <- linmod2$coef[1]
+b1 <- linmod2$coef[2]
+
+# plot(EP_MINRTY, F.value)
+gap.plot(EP_MINRTY, F.value,gap = c(3.5, 8)) 
+
+abline(a = b0, b = b1, col = "red")
+
+summary(linmod2)
+cor(EP_MINRTY, F.value)
+```
+
+```{r}
+full_lm <- lm(F.value ~ EP_POV150 + EP_MINRTY + E_UNEMP)
+summary(full_lm)
+```
+
+
+
+```{r}
+li <- list(all_ODIN_3$FIPS)
+ODIN_fips <- unlist(li)
+ODIN_fips <- as.vector(ODIN_fips,'numeric')
+```
+
+```{r}
+test_fips <- SVI[!(SVI$FIPS %in% ODIN_fips),]
+```
+
+Full linear model (all 3 indicators together) predictions:
+```{r}
+full_lm_preds <- predict(full_lm, test_fips)
+```
+
+```{r}
+test_fips$Predicted.f.values <- full_lm_preds
+colnames(test_fips)[colnames(test_fips) == "Predicted.f.values"] ="Predicted.f.full_lm"
+range(full_lm_preds)
+```
+
+
+Linear model using "most important" indicator (E_UNEMP):
+```{r}
+E_UNEMP_lm_preds <- predict(E_UNEMP_lm, test_fips)
+```
+
+```{r}
+test_fips$Predicted.f.E_UNEMP_lm <- E_UNEMP_lm_preds
+range(E_UNEMP_lm_preds)
+```
+
+
+```{r}
+# renaming
+TEST_F_VALUES <- test_fips
+```
+
+```{r}
+write.csv(TEST_F_VALUES, '/Volumes/Lexar/TEST_F_VALUES.csv')
+```
+
+```{r}
+predicted <- data.frame(TEST_F_VALUES$Predicted.f.full_lm)
+names(predicted)[1] <- "Burden"
+predicted$AorP <- rep("Predicted", times = nrow(TEST_F_VALUES))
+```
+
+
+
+# Predicted F-value histogram
+```{r}
+ggplot(predicted, aes(Burden)) +
+  geom_histogram(bins = 100) +
+  xlim(0.0,0.6)
+```
+
+```{r}
+actual <- data.frame(F.value)
+names(actual)[1] <- "Burden"
+actual$AorP <- rep("Actual", times = nrow(actual))
+```
+
+```{r}
+FINAL_Merge <- rbind(predicted, actual)
+```
+
